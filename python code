@@ -1,0 +1,46 @@
+import tkinter as tk
+from tkinter import PhotoImage
+from PIL import Image, ImageTk
+import pygame
+from pytube import YouTube
+import os
+pygame.mixer.init()
+image_path=C:\Users\SAI\Desktop\HTML\image\sid pic.png
+youtube_url=https://youtu.be/1h-mbmEUSHs?si=rULhmuJ0peCHUE1b
+def song(youtube_url):
+    yt = YouTube(https://youtu.be/1h-mbmEUSHs?si=rULhmuJ0peCHUE1b)
+    stream = yt.streams.filter(only_audio=True).first()
+    op_file = stream.download(output_path='.', filename='sithar_audio')
+    base, ext = os.path.splitext(op_file)
+    new_file = base + '.mp3'
+    os.rename(op_file, new_file)
+    pygame.mixer.music.load(new_file)
+    pygame.mixer.music.play()
+def cleanup():
+    os.remove(new_file)
+    pygame.mixer.music.set_endevent(pygame.USEREVENT)
+    root.bind('<space>', lambda e: cleanup())
+def create_image_button(root, image_path, youtube_url, row, column):
+    image = Image.open(C:\Users\SAI\Desktop\HTML\image\sid pic.png)
+    image = image.resize((100, 100))  # Resize the image to fit in the grid
+    photo = ImageTk.PhotoImage(image)button = tk.Button(root, image=photo, command=lambda: song())
+    button.image = photo 
+    button.grid(row=row, column=column, padx=10, pady=10)
+    root = tk.Tk()
+    root.title("3x3 Image Grid with YouTube Music Playback")
+    images_and_urls = [
+    ('C:\Users\SAI\Desktop\HTML\image\sid pic.png','https://youtu.be/1h-mbmEUSHs?si=rULhmuJ0peCHUE1b'),
+    ('C:\Users\SAI\Desktop\HTML\image\sid pic.png','https://youtu.be/1h-mbmEUSHs?si=rULhmuJ0peCHUE1b'),
+    ('C:\Users\SAI\Desktop\HTML\image\sid pic.png','https://youtu.be/1h-mbmEUSHs?si=rULhmuJ0peCHUE1b'),
+    ('C:\Users\SAI\Desktop\HTML\image\sid pic.png','https://youtu.be/1h-mbmEUSHs?si=rULhmuJ0peCHUE1b'),
+    ('C:\Users\SAI\Desktop\HTML\image\sid pic.png','https://youtu.be/1h-mbmEUSHs?si=rULhmuJ0peCHUE1b'),
+    ('C:\Users\SAI\Desktop\HTML\image\sid pic.png','https://youtu.be/1h-mbmEUSHs?si=rULhmuJ0peCHUE1b'),
+    ('C:\Users\SAI\Desktop\HTML\image\sid pic.png','https://youtu.be/1h-mbmEUSHs?si=rULhmuJ0peCHUE1b'),
+    ('C:\Users\SAI\Desktop\HTML\image\sid pic.png','https://youtu.be/1h-mbmEUSHs?si=rULhmuJ0peCHUE1b'),
+    ('C:\Users\SAI\Desktop\HTML\image\sid pic.png','https://youtu.be/1h-mbmEUSHs?si=rULhmuJ0peCHUE1b')
+]
+for index, (image_path, youtube_url) in enumerate(images_and_urls):
+    row = index // 3  # Calculate the row (0, 1, 2)
+    column = index % 3  # Calculate the column (0, 1, 2)
+    create_image_button(root, image_path, youtube_url, row, column)
+root.mainloop()
